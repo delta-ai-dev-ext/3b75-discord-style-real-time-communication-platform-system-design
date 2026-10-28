@@ -1,0 +1,216 @@
+<mxfile host="Electron" compressed="false">
+<diagram name="Page-1" id="p">
+<mxGraphModel background="#FFFFFF" adaptiveColors="none" deltaOrientation="LR" deltaMapSha256="474bb32e08b6a36aa38ef667a1364d780bfe7dcf842611fbc2643df5646835df">
+<root>
+<mxCell id="0" />
+<mxCell id="1" parent="0" />
+<mxCell id="edge-lane" value="APPLICATION EDGE&lt;div&gt;&lt;i style=&quot;font-weight: normal;&quot;&gt;External clients&lt;/i&gt;&lt;/div&gt;" vertex="1" parent="1" style="swimlane;html=1;startSize=50;container=1;horizontal=1;collapsible=0;fillColor=#E9F0F1;swimlaneFillColor=#E9F0F1;strokeColor=#D3DDE1;fontColor=#0B1F33;fontSize=13;fontStyle=1;" deltaKind="annotation" deltaLane="edge">
+<mxGeometry x="20" y="20" width="200" height="1130" as="geometry" />
+</mxCell>
+<mxCell id="user-lane" value="USER FACING SERVICES&lt;div&gt;&lt;i style=&quot;font-weight: normal;&quot;&gt;Client facing APIs and WebSocket&lt;/i&gt;&lt;/div&gt;" vertex="1" parent="1" style="swimlane;html=1;startSize=50;container=1;horizontal=1;collapsible=0;fillColor=#E9F0F1;swimlaneFillColor=#E9F0F1;strokeColor=#D3DDE1;fontColor=#0B1F33;fontSize=13;fontStyle=1;" deltaKind="annotation" deltaLane="user-facing">
+<mxGeometry x="250" y="20" width="560" height="1130" as="geometry" />
+</mxCell>
+<mxCell id="kafka-lane" value="KAFKA / EVENT BUS&lt;div&gt;&lt;i style=&quot;font-weight: normal;&quot;&gt;Asynchronous communication backbone&lt;/i&gt;&lt;/div&gt;" vertex="1" parent="1" style="swimlane;html=1;startSize=50;container=1;horizontal=1;collapsible=0;fillColor=#FBEFD9;swimlaneFillColor=#FBEFD9;strokeColor=#9C5F0C;fontColor=#0B1F33;fontSize=13;fontStyle=1;" deltaKind="annotation" deltaLane="kafka">
+<mxGeometry x="840" y="20" width="240" height="1130" as="geometry" />
+</mxCell>
+<mxCell id="internal-lane" value="INTERNAL SERVICES&lt;div&gt;&lt;i style=&quot;font-weight: normal;&quot;&gt;Event driven, no direct client traffic&lt;/i&gt;&lt;/div&gt;" vertex="1" parent="1" style="swimlane;html=1;startSize=50;container=1;horizontal=1;collapsible=0;fillColor=#E9F0F1;swimlaneFillColor=#E9F0F1;strokeColor=#D3DDE1;fontColor=#0B1F33;fontSize=13;fontStyle=1;" deltaKind="annotation" deltaLane="internal">
+<mxGeometry x="1110" y="20" width="380" height="1130" as="geometry" />
+</mxCell>
+<mxCell id="kafka-inner" value="" vertex="1" parent="1" style="rounded=1;html=1;fillColor=#FFEFE0;strokeColor=#9C5F0C;fontColor=#0B1F33;" deltaKind="annotation">
+<mxGeometry x="865" y="240" width="190" height="880" as="geometry" />
+</mxCell>
+<mxCell id="kafka-logo" value="" vertex="1" parent="1" style="shape=image;html=1;imageAspect=0;aspect=fixed;fontColor=#0B1F33;image=data:image/svg+xml,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjxzdmcKICAgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIgogICB4bWxuczpjYz0iaHR0cDovL2NyZWF0aXZlY29tbW9ucy5vcmcvbnMjIgogICB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiCiAgIHhtbG5zOnN2Zz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgeG1sbnM6c29kaXBvZGk9Imh0dHA6Ly9zb2RpcG9kaS5zb3VyY2Vmb3JnZS5uZXQvRFREL3NvZGlwb2RpLTAuZHRkIgogICB4bWxuczppbmtzY2FwZT0iaHR0cDovL3d3dy5pbmtzY2FwZS5vcmcvbmFtZXNwYWNlcy9pbmtzY2FwZSIKICAgd2lkdGg9IjEyMCIKICAgaGVpZ2h0PSI2MCIKICAgdmlld0JveD0iMCAwIDEyMCA2MCIKICAgdmVyc2lvbj0iMS4xIgogICBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJ4TWlkWU1pZCIKICAgaWQ9InN2ZzMwNzQiCiAgIGlua3NjYXBlOnZlcnNpb249IjAuNDguNCByOTkzOSIKICAgc29kaXBvZGk6ZG9jbmFtZT0ia2Fma2EtYXIyMS5zdmciPgogIDxtZXRhZGF0YQogICAgIGlkPSJtZXRhZGF0YTMwODQiPgogICAgPHJkZjpSREY+CiAgICAgIDxjYzpXb3JrCiAgICAgICAgIHJkZjphYm91dD0iIj4KICAgICAgICA8ZGM6Zm9ybWF0PmltYWdlL3N2Zyt4bWw8L2RjOmZvcm1hdD4KICAgICAgICA8ZGM6dHlwZQogICAgICAgICAgIHJkZjpyZXNvdXJjZT0iaHR0cDovL3B1cmwub3JnL2RjL2RjbWl0eXBlL1N0aWxsSW1hZ2UiIC8+CiAgICAgIDwvY2M6V29yaz4KICAgIDwvcmRmOlJERj4KICA8L21ldGFkYXRhPgogIDxkZWZzCiAgICAgaWQ9ImRlZnMzMDgyIiAvPgogIDxzb2RpcG9kaTpuYW1lZHZpZXcKICAgICBwYWdlY29sb3I9IiNmZmZmZmYiCiAgICAgYm9yZGVyY29sb3I9IiM2NjY2NjYiCiAgICAgYm9yZGVyb3BhY2l0eT0iMSIKICAgICBvYmplY3R0b2xlcmFuY2U9IjEwIgogICAgIGdyaWR0b2xlcmFuY2U9IjEwIgogICAgIGd1aWRldG9sZXJhbmNlPSIxMCIKICAgICBpbmtzY2FwZTpwYWdlb3BhY2l0eT0iMCIKICAgICBpbmtzY2FwZTpwYWdlc2hhZG93PSIyIgogICAgIGlua3NjYXBlOndpbmRvdy13aWR0aD0iMTQxOCIKICAgICBpbmtzY2FwZTp3aW5kb3ctaGVpZ2h0PSI5NTMiCiAgICAgaWQ9Im5hbWVkdmlldzMwODAiCiAgICAgc2hvd2dyaWQ9ImZhbHNlIgogICAgIGlua3NjYXBlOnpvb209IjQuMzkxMzc5NiIKICAgICBpbmtzY2FwZTpjeD0iMTA1LjgwNTQ1IgogICAgIGlua3NjYXBlOmN5PSIyMy4zNDYzMDUiCiAgICAgaW5rc2NhcGU6d2luZG93LXg9IjY1IgogICAgIGlua3NjYXBlOndpbmRvdy15PSIyNCIKICAgICBpbmtzY2FwZTp3aW5kb3ctbWF4aW1pemVkPSIwIgogICAgIGlua3NjYXBlOmN1cnJlbnQtbGF5ZXI9InN2ZzMwNzQiIC8+CiAgPGcKICAgICBpZD0iZzMxNzUiCiAgICAgdHJhbnNmb3JtPSJtYXRyaXgoMS4xNDU4MzM1LDAsMCwxLjE0NTgzNDQsLTguODE1Mzk2LC00LjM3NTU5OTcpIj4KICAgIDxwYXRoCiAgICAgICBpbmtzY2FwZTpjb25uZWN0b3ItY3VydmF0dXJlPSIwIgogICAgICAgZD0ibSAyMC42ODg2NTQsMTEuMzQ3OTM4IDAsMCBjIC0wLjQ5MzEzMSwtMC41MDQxMDYgLTEuMTc3ODI2LC0wLjgxNDU0MiAtMS45NDA1MzUsLTAuODE0NTQyIC0wLjc2MDk4NSwwIC0xLjQ0MDA3NywwLjMxMDQzNiAtMS45MjcwMzEsMC44MTQ1NDIgbCAtMC4wMTI3NCwwIGMgLTAuNDkxNTk5LDAuNTAwMjU2IC0wLjc5NjcxMSwxLjE5ODUxOSAtMC43OTY3MTEsMS45NzAwNzcgMCwwLjc3NjE0IDAuMzA1MTEyLDEuNDcwMDE3IDAuNzk2NzExLDEuOTY1MzUgbCAwLjAxMjc0LDAuMDEzNzQgYyAwLjQ4Njk1NCwwLjQ5OTcyIDEuMTY2MDQ2LDAuODA1ODE5IDEuOTI3MDMxLDAuODA1ODE5IDAuNzYyNzA5LDAgMS40NDc0MDQsLTAuMzA2MDk5IDEuOTQwNTM1LC0wLjgwNTgxOSBsIDAuMDA1NiwtMC4wMTM3NCBjIDAuNDkzODUsLTAuNDk1MzMzIDAuNzk0ODkyLC0xLjE4OTIxIDAuNzk0ODkyLC0xLjk2NTM1IDAsLTAuNzcxNTU4IC0wLjMwMTA0MiwtMS40Njk4MjEgLTAuNzk0ODkyLC0xLjk3MDA3NyBsIC0wLjAwNTYsMCB6IG0gLTEuOTQwNTM1LDM4LjExOTU5MyAwLDAgYyAwLjc2MjcwOSwwIDEuNDQ3NDA0LC0wLjMxNjE4NyAxLjk0MDUzNSwtMC44MTA5ODUgbCAwLjAwNTYsLTAuMDE0MjggYyAwLjQ5Mzg1LC0wLjQ5Mzk2OSAwLjc5NDg5MiwtMS4xOTIyOCAwLjc5NDg5MiwtMS45NTk2NDggMCwtMC43NzU5NDUgLTAuMzAxMDQyLC0xLjQ3MTEzNyAtMC43OTQ4OTIsLTEuOTczOTI3IGwgLTAuMDA1NiwwIGMgLTAuNDkzMTMxLC0wLjUwODgzMyAtMS4xNzc4MjYsLTAuODE2NDQzIC0xLjk0MDUzNSwtMC44MTY0NDMgLTAuNzYwOTg1LDAgLTEuNDQwMDc3LDAuMzA3NjEgLTEuOTI3MDMxLDAuODE2NDQzIGwgLTAuMDEyNzQsMCBjIC0wLjQ5MTU5OSwwLjUwMjc5IC0wLjc5NjcxMSwxLjE5Nzk4MiAtMC43OTY3MTEsMS45NzM5MjcgMCwwLjc2NzM2OCAwLjMwNTExMiwxLjQ2NTY3OSAwLjc5NjcxMSwxLjk1OTY0OCBsIDAuMDEyNzQsMC4wMTQyOCBjIDAuNDg2OTU0LDAuNDk0Nzk4IDEuMTY2MDQ2LDAuODEwOTg1IDEuOTI3MDMxLDAuODEwOTg1IGwgMCwwIHogbSAxNC45MDk1NTgsLTguNDM3MjkxIDAsMCBjIDAuNjc3Nzk5LC0wLjE4MTQzNyAxLjI5MTU2NywtMC42MjQwNDEgMS42NjYwNzQsLTEuMjkzNTUgbCAwLjA1MDUyLC0wLjA5Nzg2IDAsMCBjIDAuMzMzMTc3LC0wLjYzMzkzNCAwLjM5NDMzMywtMS4zNjcwNDEgMC4yMTYwODQsLTIuMDE3MzAxIC0wLjE3OTU5MSwtMC42OTQ2NTYgLTAuNjE5NDIsLTEuMzEwODk5IC0xLjI3NjA1MSwtMS42OTQwOTYgbCAtMC4wMzg1LC0wLjAyNjQ2IGMgLTAuNjM5ODIxLC0wLjM1NzcwOSAtMS4zNjgwOTcsLTAuNDM1NTg2IC0yLjAzNzIyNywtMC4yNDk5NTggLTAuNjgwNTc3LDAuMTcyODYgLTEuMjkyMzM0LDAuNjM0MTI5IC0xLjY2NDc4MSwxLjI5NzkzNiAtMC4zNzczMzEsMC42NTk2MTcgLTAuNDU2MTEyLDEuNDE3ODcxIC0wLjI3NTc1NSwyLjExNTkzOSAwLjE4NjY3OCwwLjY4Njg1OSAwLjYyMjk2NCwxLjMwNzA0OSAxLjI3NTQ3NiwxLjY5NDYzMiBsIDAuMDA0MSwwIGMgMC42NTM4MDUsMC4zODI4NTUgMS4zOTMzMzUsMC40NTExOCAyLjA4MDA0MSwwLjI3MDcxOCBsIDAsMCB6IG0gLTEyLjEwMjY3OCwtMTMuODgzNTI1IDAsMCBjIC0wLjcxODM2MiwtMC43Mjg5MTcgLTEuNzA5NzAyLC0xLjE4NTc5OSAtMi44MDY4OCwtMS4xODU3OTkgLTEuMDk1Njk0LDAgLTIuMDg0MTYxLDAuNDU2ODgyIC0yLjgwMTAzOCwxLjE4NTc5OSAtMC43MTUwMSwwLjcyODE4NSAtMS4xNTU1NTcsMS43MzI1NDcgLTEuMTU1NTU3LDIuODQ5MDQ2IDAsMS4xMTY0OTkgMC40NDA1NDcsMi4xMjUyNDYgMS4xNTU1NTcsMi44NjIwMDkgMC43MTY4NzcsMC43MjQ1MyAxLjcwNTM0NCwxLjE3NzIyMiAyLjgwMTAzOCwxLjE3NzIyMiAxLjA5NzE3OCwwIDIuMDg4NTE4LC0wLjQ1MjY5MiAyLjgwNjg4LC0xLjE3NzIyMiAwLjcxNjMwMywtMC43MzY3NjMgMS4xNTY4NSwtMS43NDU1MSAxLjE1Njg1LC0yLjg2MjAwOSAwLC0xLjExNjQ5OSAtMC40NDA1NDcsLTIuMTIwODYxIC0xLjE1Njg1LC0yLjg0OTA0NiBsIDAsMCB6IG0gLTEuNTc4Mzg1LC00Ljc0NTg3NiAwLDAgYyAxLjU5MjM2OSwwLjI2NjkxNyAzLjAyMjc3MiwxLjA0MzA1NyA0LjExNTgzMiwyLjE2Mzc0NyBsIDAuMDA4NCwwIGMgMC4xNzM5NCwwLjE3NjI3MSAwLjM0MzA5LDAuMzcwNDI4IDAuNTAwMjIsMC41NjQ2MzMgbCAyLjczMjQxLC0xLjYwODIyNiBjIC0wLjM2NzYxLC0xLjEyOTQ2MiAtMC4zODQ0NjcsLTIuMzEwMzM5IC0wLjA4OTI3LC0zLjQxODI2MSAwLjM4OTQ5NiwtMS40ODI1ODkgMS4zMzQ0MjksLTIuODEwMzk5IDIuNzUwNzUyLC0zLjY0MjA5NiBsIDAuMDQ2NDEsLTAuMDMwMDcgYyAxLjQwMDk5OCwtMC44MDY1OTkgMi45OTMzNjcsLTAuOTc0MzQyIDQuNDMwODEsLTAuNTc4MTgyIDEuNDU1NjQxLDAuMzk2OTQgMi43Njg5MDMsMS4zNjI4NSAzLjU4NjIwOCwyLjgwMjAxOCBsIDAsMC4wMDQyIGMgMC44MTM3NiwxLjQzMTM3IDAuOTc4NiwzLjA3NDA1MSAwLjU5MDU4OSw0LjU1MjQ1IC0wLjM4NzI0NSwxLjQ4Mjc4NSAtMS4zMzU3MjMsMi44MTkxNzIgLTIuNzUwNzA0LDMuNjQ2NTMxIGwgLTAuMzczMjE0LDAuMjI0MDMxIC0wLjAzNzgzLDAgYyAtMS4zMDkwOTYsMC42MzQxMjggLTIuNzQ3ODc5LDAuNzMzMzAyIC00LjA2OTU3LDAuMzc5MiAtMS4wODUyMDUsLTAuMjkyNzQ2IC0yLjA4MDYxNiwtMC45MDk1NzQgLTIuODYwMTgzLC0xLjc4NDEwOCBsIC0yLjcyODEsMS42MDM0NTEgYyAwLjMxMzU0MiwwLjg0NDUxNCAwLjQ4Njc2MywxLjc1NDA4NyAwLjQ4Njc2MywyLjcxNTYxMiAwLDAuOTU2NjAyIC0wLjE3MzIyMSwxLjg3OTY3NSAtMC40ODY3NjMsMi43MjgzMzEgbCAyLjcyODEsMS41OTkzMDggYyAwLjc3OTU2NywtMC44ODgyNzcgMS43NzQ5NzgsLTEuNDkxMzYyIDIuODYwMTgzLC0xLjc4NDY5MiAxLjQ1NjM2LC0wLjQwNDkzMiAzLjA2OTg0OSwtMC4yMzI4NTIgNC40ODA2MTcsMC42MDM4MTUgbCAwLjA5MDUxLDAuMDQyODQgMCwwLjAwNDIgYyAxLjM2MjQ0NiwwLjg0MTA1NCAyLjI3NzI1NiwyLjEzODIxIDIuNjYwMTkxLDMuNjAzNjk0IDAuMzg4MDExLDEuNDcwMDE2IDAuMjIzMTcxLDMuMTEzMjM0IC0wLjU5MDU4OSw0LjU0NzQ3OSBsIC0wLjA0OTE4LDAuMDk5OTUgMCwwIC0wLjAwNTcsLTAuMDA4NiBjIC0wLjgxNzExMywxLjM4MjgzIC0yLjEwNTI4LDIuMzE5NDUyIC0zLjUyNzI1NCwyLjcxNTYxMSAtMS40NTg0MTksMC4zOTExODkgLTMuMDcyNjc1LDAuMjI0MDMxIC00LjQ4MTMzNSwtMC42MDA0NTMgbCAwLC0wLjAxMTQgYyAtMS40MTYzMjMsLTAuODMzMDYxIC0yLjM2MTI1NiwtMi4xNjM2OTcgLTIuNzUwNzUyLC0zLjY0MzY1NiAtMC4yOTUxOTksLTEuMTAyNzU1IC0wLjI3ODM0MiwtMi4yODM2MzIgMC4wODkyNywtMy40MTMwOTQgbCAtMi43MzI0MSwtMS42MDQwMzUgYyAtMC4xNTcxMywwLjE5NDIwNSAtMC4zMjYyOCwwLjM3OTc4NSAtMC41MDAyMiwwLjU1NjA1NiBsIC0wLjAwODQsMC4wMDg2IGMgLTEuMDkzMDYsMS4xMTY0OTkgLTIuNTIzNDYzLDEuODkyNjM5IC00LjExNTgzMiwyLjE1MDk3OCBsIDAsMy4yMTI0NTcgYyAxLjEzNTAxMiwwLjI0MTM4IDIuMTUwODI0LDAuODE4OTc3IDIuOTQ3MDA5LDEuNjI5MTgyIGwgMCwwIDAuMDA0MywwLjAwODUgYyAxLjA2NzEwMywxLjA4MDcyOCAxLjcyNzg1MiwyLjU4NjM2OSAxLjcyNzg1Miw0LjI0MTc3IDAsMS42NDk5NDMgLTAuNjYwNzQ5LDMuMTQ3MDA3IC0xLjcyNzg1Miw0LjIzMzQzNyBsIC0wLjAwNDMsMC4wMTY5MSAwLDAgYyAtMS4wNzQ3NjYsMS4wODU4NDYgLTIuNTQ4NTEsMS43NTg0MjUgLTQuMTc1NTA0LDEuNzU4NDI1IC0xLjYxODM3NSwwIC0zLjA5NjQyOSwtMC42NzI1NzkgLTQuMTY4MzY5LC0xLjc1ODQyNSBsIC0wLjAwNDMsMCAwLC0wLjAxNjkxIGMgLTEuMDY4MzQ4LC0xLjA4NjQzIC0xLjczMDU4MiwtMi41ODM0OTQgLTEuNzMwNTgyLC00LjIzMzQzNyAwLC0xLjY1NTQwMSAwLjY2MjIzNCwtMy4xNjEwNDIgMS43MzA1ODIsLTQuMjQxNzcgbCAwLC0wLjAwODUgMC4wMDQzLDAgYyAwLjc5NTQxOSwtMC44MTAyMDUgMS44MTMyOSwtMS4zODc4MDIgMi45NDQzNzUsLTEuNjI5MTgyIGwgMCwtMy4yMTI0NTcgYyAtMS41OTI1NjEsLTAuMjU4MzM5IC0zLjAyMDEzOCwtMS4wMzQ0NzkgLTQuMTExNzEzLC0yLjE1MDk3OCBsIC0wLjAxMTIxLC0wLjAwODYgYyAtMS4zNjMwMiwtMS4zOTE5NDQgLTIuMjE2ODE3LC0zLjMxMDEyIC0yLjIxNjgxNywtNS40MzUzNjYgMCwtMi4xMjA4NjEgMC44NTM3OTcsLTQuMDM5MjMxIDIuMjE2ODE3LC01LjQzMTE3NSBsIDAuMDExMjEsMCBjIDEuMDkxNTc1LC0xLjEyMDY5IDIuNTE5MTUyLC0xLjg5NjgzIDQuMTExNzEzLC0yLjE2Mzc0NyBsIDAsLTMuMTk4OTA4IEMgMTYuMzkzMDQsMTguOTUyMTY4IDE1LjM3NTE2OSwxOC4zNzQ1NzEgMTQuNTc5NzUsMTcuNTY4NTU4IGwgLTAuMDA0MywwIDAsLTAuMDA4NiBjIC0xLjA2ODM0OCwtMS4wOTA3NjcgLTEuNzMwNTgyLC0yLjU4NjMyIC0xLjczMDU4MiwtNC4yNDE5NjUgMCwtMS42NDY4NzIgMC42NjIyMzQsLTMuMTU1NDg2IDEuNzMwNTgyLC00LjI0MTc2OTUgbCAwLDAgMC4wMDQzLC0wLjAwNDM5IGMgMS4wNzE5NCwtMS4wOTAxODI1IDIuNTQ5OTk0LC0xLjc2MjIyNjIgNC4xNjgzNjksLTEuNzYyMjI2MiAxLjYyNjk5NCwwIDMuMTAwNzM4LDAuNjcyMDQzNyA0LjE3NTUwNCwxLjc2MjIyNjIgbCAwLDAuMDA0MzkgMC4wMDQzLDAgYyAxLjA2NzEwMywxLjA4NjI4MzUgMS43Mjc4NTIsMi41OTQ4OTc1IDEuNzI3ODUyLDQuMjQxNzY5NSAwLDEuNjU1NjQ1IC0wLjY2MDc0OSwzLjE1MTE5OCAtMS43Mjc4NTIsNC4yNDE5NjUgbCAtMC4wMDQzLDAuMDA4NiBjIC0wLjc5NjE4NSwwLjgwNjAxMyAtMS44MTE5OTcsMS4zODM2MSAtMi45NDcwMDksMS42MzMzNzMgbCAwLDMuMTk4OTA4IHogbSAxNS4zNDcxMzcsLTIuMTMzODI0IC0wLjAyMjk5LC0wLjAzNTA0IGMgLTAuMzc2NzU3LC0wLjY0NTg3MyAtMC45NzgwMjYsLTEuMDc3MDczIC0xLjY0MzA4NiwtMS4yNjI4OTYgLTAuNjg2NzA2LC0wLjE4NTM4NSAtMS40MjYyMzYsLTAuMTA3NzUxIC0yLjA4NDE2LDAuMjc2NDIgbCAwLjAwNDEsMCBjIC0wLjY1NjYzMSwwLjM3OTA1NCAtMS4wOTU2OTQsMC45OTk0NCAtMS4yNzk1OTUsMS42OTM5MDEgLTAuMTgwMzU3LDAuNjg5Njg1IC0wLjEwMTU3NiwxLjQ1MjEzMSAwLjI3NTc1NSwyLjExNjEzMyBsIDAuMDEyNTUsMC4wMTcxNSBjIDAuMzc4MjQxLDAuNjU1MjMgMC45ODAwMzcsMS4wOTQ5NTggMS42NTIyMzMsMS4yNzIwMDkgMC42NzQ3MzMsMC4xOTQxNTcgMS40Mjc1MjksMC4xMTIxMzcgMi4wNzU3MzEsLTAuMjcyMDM0IGwgMC4wMzUyLC0wLjAxNzE1IGMgMC42MzgyODksLTAuMzg3NTgzIDEuMDYzNTExLC0wLjk5OTk3NiAxLjI0MDg1MSwtMS42NzI1NTUgMC4xODEwNzUsLTAuNjkzODc3IDAuMTA4NjY0LC0xLjQ1MjEzMSAtMC4yNjY2MDgsLTIuMTE1OTM5IGwgMCwwIgogICAgICAgc3R5bGU9ImZpbGw6IzIzMWYyMDtmaWxsLW9wYWNpdHk6MTtmaWxsLXJ1bGU6bm9uemVybztzdHJva2U6bm9uZSIKICAgICAgIGlkPSJwYXRoMzEzOSIgLz4KICAgIDxwYXRoCiAgICAgICBpbmtzY2FwZTpjb25uZWN0b3ItY3VydmF0dXJlPSIwIgogICAgICAgZD0ibSA0Ny40NDY4NzgsMjEuMjA2NTEyIDMuMDQ4NzI5LDAgMCw5LjQ3MDQwNiA0LjM5NjUyLC00Ljk0ODYxIDMuNjU1NTA2LDAgLTUuMzA3NzM5LDUuNzMzMDgzIDUuMzI5NzY4LDcuMjY3MjgyIC0zLjQ5MDc2MSwwIC00LjU4MzI5NCwtNi40OTEzMzcgMCw2LjQ5MTMzNyAtMy4wNDg3MjksMCAwLC0xNy41MjIxNjEiCiAgICAgICBzdHlsZT0iZmlsbDojMjMxZjIwO2ZpbGwtb3BhY2l0eToxO2ZpbGwtcnVsZTpub256ZXJvO3N0cm9rZTpub25lIgogICAgICAgaWQ9InBhdGgzMTQxIiAvPgogICAgPHBhdGgKICAgICAgIGlua3NjYXBlOmNvbm5lY3Rvci1jdXJ2YXR1cmU9IjAiCiAgICAgICBkPSJtIDYyLjA4OTE1OCwzMi4yODQ1NTkgYyAwLDEuNjEyNjEyIDEuMTM5ODAxLDMuOTU2OTY4IDMuODg1ODYsMy45NTY5NjggMS42OTkxNjYsMCAyLjgxNzQxNywtMC45MDA5OTcgMy4zOTczNzQsLTIuMDgxNjc5IDAuMzAzNjI4LC0wLjU3MzE2MiAwLjQ0MzQ2OSwtMS4xODU3OTggMC40OTA0MDIsLTEuODIzMzM4IDAuMDIxMDcsLTAuNjE2Nzc5IC0wLjA5MzM5LC0xLjI1ODUxIC0wLjM1MTAzOSwtMS44MjgwNjYgLTAuNTM0NDYyLC0xLjIyODEgLTEuNzIwNzE3LC0yLjI5Mjk5IC0zLjU1OTI0NSwtMi4yOTI5OSAtMi40NjU0MTksMCAtMy44NjMzNTIsMi4wMzQ0NTUgLTMuODYzMzUyLDQuMDQ3NjEzIGwgMCwwLjAyMTQ5IHogbSAxMC43OTc5NDEsNi40NDQxMTQgLTMuMDUwMTY2LDAgMCwtMS44NzAzMTggYyAtMC44MTE3NDksMS41MTI2NTggLTIuNTExMzk0LDIuMjcxNDQ5IC00LjMwMzk0NywyLjI3MTQ0OSAtNC4wOTYxMDEsMCAtNi40OTIwNzgsLTMuMjQ1OTg2IC02LjQ5MjA3OCwtNi45MTM3NjUgMCwtNC4wOTU1NjggMi45MDg0MDksLTYuODg5MDU3IDYuNDkyMDc4LC02Ljg4OTA1NyAyLjMyNzAxNSwwIDMuNzQ2MDE5LDEuMjU0OTA0IDQuMzAzOTQ3LDIuMjk3OTYxIGwgMCwtMS44OTY2MzUgMy4wNTAxNjYsMCAwLDEzLjAwMDM2NSIKICAgICAgIHN0eWxlPSJmaWxsOiMyMzFmMjA7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICBpZD0icGF0aDMxNDMiIC8+CiAgICA8cGF0aAogICAgICAgaW5rc2NhcGU6Y29ubmVjdG9yLWN1cnZhdHVyZT0iMCIKICAgICAgIGQ9Im0gNzYuMzM5MDY5LDI4LjEyMDQ3MSAtMS41Nzk5MTgsMCAwLC0yLjM5MjE2MyAxLjU3OTkxOCwwIDAsLTAuNzMyNTcyIGMgMCwtMy44NjI3MTUgMi44ODYzNzksLTQuMDk1NTY3IDUuMDc0OTg5LC00LjEyMTI1IGwgMCwyLjM4Nzk3MiBjIC0wLjc2OTYwNiwwIC0yLjAyNDgyNCwwIC0yLjAyNDgyNCwxLjgyNzUzIGwgMCwwLjYzODMyIDIuMDI0ODI0LDAgMCwyLjM5MjE2MyAtMi4wMjQ4MjQsMCAwLDEwLjYwODIwMiAtMy4wNTAxNjUsMCAwLC0xMC42MDgyMDIiCiAgICAgICBzdHlsZT0iZmlsbDojMjMxZjIwO2ZpbGwtb3BhY2l0eToxO2ZpbGwtcnVsZTpub256ZXJvO3N0cm9rZTpub25lIgogICAgICAgaWQ9InBhdGgzMTQ1IiAvPgogICAgPHBhdGgKICAgICAgIGlua3NjYXBlOmNvbm5lY3Rvci1jdXJ2YXR1cmU9IjAiCiAgICAgICBkPSJtIDgzLjQ4NzI1MSwyMS4yMDY1MTIgMy4wNDc3NzEsMCAwLDkuNDcwNDA2IDQuMzk3MzM0LC00Ljk0ODYxIDMuNjU1NTA2LDAgLTUuMzA3NzM5LDUuNzMzMDgzIDUuMzI4ODExLDcuMjY3MjgyIC0zLjQ5MDc2MiwwIC00LjU4MzE1LC02LjQ5MTMzNyAwLDYuNDkxMzM3IC0zLjA0Nzc3MSwwIDAsLTE3LjUyMjE2MSIKICAgICAgIHN0eWxlPSJmaWxsOiMyMzFmMjA7ZmlsbC1vcGFjaXR5OjE7ZmlsbC1ydWxlOm5vbnplcm87c3Ryb2tlOm5vbmUiCiAgICAgICBpZD0icGF0aDMxNDciIC8+CiAgICA8cGF0aAogICAgICAgaW5rc2NhcGU6Y29ubmVjdG9yLWN1cnZhdHVyZT0iMCIKICAgICAgIGQ9Im0gOTguMTI5Mzg3LDMyLjI4NDU1OSBjIDAsMS42MTI2MTIgMS4xMzkzMjIsMy45NTY5NjggMy44ODU4NjMsMy45NTY5NjggMS42OTY3NywwIDIuODE1MDIsLTAuOTAwOTk3IDMuMzk1OTMsLTIuMDgxNjc5IDAuMzA0NTksLTAuNTczMTYyIDAuNDQ0OTEsLTEuMTg1Nzk4IDAuNDkwODksLTEuODIzMzM4IDAuMDIxMSwtMC42MTY3NzkgLTAuMDkzNCwtMS4yNTg1MSAtMC4zNTE1MiwtMS44MjgwNjYgLTAuNTMzNTEsLTEuMjI4MSAtMS43MTk3NiwtMi4yOTI5OSAtMy41NTc4MSwtMi4yOTI5OSAtMi40NjU4OTksMCAtMy44NjMzNTMsMi4wMzQ0NTUgLTMuODYzMzUzLDQuMDQ3NjEzIGwgMCwwLjAyMTQ5IHogbSAxMC43OTY5ODMsNi40NDQxMTQgLTMuMDQ5MjEsMCAwLC0xLjg3MDMxOCBjIC0wLjgxNDE0LDEuNTEyNjU4IC0yLjUxMjM1LDIuMjcxNDQ5IC00LjMwMzk0LDIuMjcxNDQ5IC00LjA5NjEwNiwwIC02LjQ5MDE2NywtMy4yNDU5ODYgLTYuNDkwMTY3LC02LjkxMzc2NSAwLC00LjA5NTU2OCAyLjkwNzQ1MSwtNi44ODkwNTcgNi40OTAxNjcsLTYuODg5MDU3IDIuMzI1NTcsMCAzLjc0NjAxLDEuMjU0OTA0IDQuMzAzOTQsMi4yOTc5NjEgbCAwLC0xLjg5NjYzNSAzLjA0OTIxLDAgMCwxMy4wMDAzNjUiCiAgICAgICBzdHlsZT0iZmlsbDojMjMxZjIwO2ZpbGwtb3BhY2l0eToxO2ZpbGwtcnVsZTpub256ZXJvO3N0cm9rZTpub25lIgogICAgICAgaWQ9InBhdGgzMTQ5IiAvPgogIDwvZz4KPC9zdmc+Cg==" deltaKind="annotation">
+<mxGeometry x="910" y="520" width="100" height="50" as="geometry" />
+</mxCell>
+<mxCell id="kafka-topics" value="Topics (hidden in system view)" vertex="1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontColor=#0B1F33;fontSize=12;" deltaKind="annotation">
+<mxGeometry x="865" y="580" width="190" height="40" as="geometry" />
+</mxCell>
+<mxCell id="card-voice" value="" vertex="1" parent="1" style="rounded=1;html=1;fillColor=#DDF1EF;strokeColor=#0E7C78;strokeWidth=1.5;fontColor=#0B1F33;" deltaKind="annotation" deltaCard="true" deltaLane="user-facing" deltaColumn="1" deltaRow="0">
+<mxGeometry x="340" y="320" width="280" height="140" as="geometry" />
+</mxCell>
+<mxCell id="card-voice-title" value="Voice service" vertex="1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontColor=#0B1F33;fontSize=14;fontStyle=1;" deltaKind="annotation">
+<mxGeometry x="340" y="330" width="280" height="24" as="geometry" />
+</mxCell>
+<mxCell id="card-voice-livekit-pill" value="" vertex="1" parent="1" style="rounded=1;html=1;fillColor=#0E7C78;strokeColor=#0E7C78;fontColor=#FFFFFF;" deltaKind="annotation" deltaPill="true">
+<mxGeometry x="360" y="370" width="200" height="30" as="geometry" />
+</mxCell>
+<mxCell id="card-voice-livekit-pill-cloud" value="" vertex="1" parent="1" style="ellipse;shape=cloud;html=1;fillColor=#0E7C78;strokeColor=#DDF1EF;fontColor=#0B1F33;" deltaKind="annotation">
+<mxGeometry x="368" y="376" width="40" height="18" as="geometry" />
+</mxCell>
+<mxCell id="card-voice-livekit-pill-text" value="LiveKit Cloud" vertex="1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontColor=#0B1F33;fontSize=12;" deltaKind="annotation">
+<mxGeometry x="414" y="370" width="140" height="30" as="geometry" />
+</mxCell>
+<mxCell id="card-chat" value="" vertex="1" parent="1" style="rounded=1;html=1;fillColor=#DDF1EF;strokeColor=#0E7C78;strokeWidth=1.5;fontColor=#0B1F33;" deltaKind="annotation" deltaCard="true" deltaLane="user-facing" deltaColumn="1" deltaRow="1">
+<mxGeometry x="340" y="540" width="280" height="140" as="geometry" />
+</mxCell>
+<mxCell id="card-chat-title" value="Chat service" vertex="1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontColor=#0B1F33;fontSize=14;fontStyle=1;" deltaKind="annotation">
+<mxGeometry x="340" y="550" width="280" height="24" as="geometry" />
+</mxCell>
+<mxCell id="chat-db" value="" vertex="1" parent="1" style="shape=datastore;html=1;fillColor=#FFFFFF;strokeColor=#0B1F33;fontColor=#0B1F33;" deltaKind="database" deltaTechnology="postgresql" deltaIcon="postgresql" deltaLane="user-facing" deltaColumn="1" deltaRow="1">
+<mxGeometry x="360" y="590" width="28" height="22" as="geometry" />
+</mxCell>
+<mxCell id="chat-db-label" value="Chat PostgreSQL" vertex="1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontColor=#0B1F33;fontSize=12;" deltaKind="annotation">
+<mxGeometry x="396" y="589" width="210" height="24" as="geometry" />
+</mxCell>
+<mxCell id="card-gateway" value="" vertex="1" parent="1" style="rounded=1;html=1;fillColor=#DDF1EF;strokeColor=#0E7C78;strokeWidth=1.5;fontColor=#0B1F33;" deltaKind="annotation" deltaCard="true" deltaLane="user-facing" deltaColumn="1" deltaRow="2">
+<mxGeometry x="340" y="760" width="280" height="140" as="geometry" />
+</mxCell>
+<mxCell id="card-gateway-title" value="Realtime gateway" vertex="1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontColor=#0B1F33;fontSize=14;fontStyle=1;" deltaKind="annotation">
+<mxGeometry x="340" y="770" width="280" height="24" as="geometry" />
+</mxCell>
+<mxCell id="card-identity" value="" vertex="1" parent="1" style="rounded=1;html=1;fillColor=#DDF1EF;strokeColor=#0E7C78;strokeWidth=1.5;fontColor=#0B1F33;" deltaKind="annotation" deltaCard="true" deltaLane="user-facing" deltaColumn="1" deltaRow="3">
+<mxGeometry x="340" y="980" width="280" height="140" as="geometry" />
+</mxCell>
+<mxCell id="card-identity-title" value="Identity service" vertex="1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontColor=#0B1F33;fontSize=14;fontStyle=1;" deltaKind="annotation">
+<mxGeometry x="340" y="990" width="280" height="24" as="geometry" />
+</mxCell>
+<mxCell id="identity-db" value="" vertex="1" parent="1" style="shape=datastore;html=1;fillColor=#FFFFFF;strokeColor=#0B1F33;fontColor=#0B1F33;" deltaKind="database" deltaTechnology="postgresql" deltaIcon="postgresql" deltaLane="user-facing" deltaColumn="1" deltaRow="3">
+<mxGeometry x="360" y="1030" width="28" height="22" as="geometry" />
+</mxCell>
+<mxCell id="identity-db-label" value="Identity PostgreSQL" vertex="1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontColor=#0B1F33;fontSize=12;" deltaKind="annotation">
+<mxGeometry x="396" y="1029" width="210" height="24" as="geometry" />
+</mxCell>
+<mxCell id="card-identity-clerk-pill" value="" vertex="1" parent="1" style="rounded=1;html=1;fillColor=#0E7C78;strokeColor=#0E7C78;fontColor=#FFFFFF;" deltaKind="annotation" deltaPill="true">
+<mxGeometry x="360" y="1070" width="200" height="30" as="geometry" />
+</mxCell>
+<mxCell id="card-identity-clerk-pill-cloud" value="" vertex="1" parent="1" style="ellipse;shape=cloud;html=1;fillColor=#0E7C78;strokeColor=#DDF1EF;fontColor=#0B1F33;" deltaKind="annotation">
+<mxGeometry x="368" y="1076" width="40" height="18" as="geometry" />
+</mxCell>
+<mxCell id="card-identity-clerk-pill-text" value="Clerk" vertex="1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontColor=#0B1F33;fontSize=12;" deltaKind="annotation">
+<mxGeometry x="414" y="1070" width="140" height="30" as="geometry" />
+</mxCell>
+<mxCell id="card-community" value="" vertex="1" parent="1" style="rounded=1;html=1;fillColor=#DDF1EF;strokeColor=#0E7C78;strokeWidth=1.5;fontColor=#0B1F33;" deltaKind="annotation" deltaCard="true" deltaLane="internal" deltaColumn="1" deltaRow="0">
+<mxGeometry x="1140" y="320" width="280" height="140" as="geometry" />
+</mxCell>
+<mxCell id="card-community-title" value="Community service" vertex="1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontColor=#0B1F33;fontSize=14;fontStyle=1;" deltaKind="annotation">
+<mxGeometry x="1140" y="330" width="280" height="24" as="geometry" />
+</mxCell>
+<mxCell id="community-db" value="" vertex="1" parent="1" style="shape=datastore;html=1;fillColor=#FFFFFF;strokeColor=#0B1F33;fontColor=#0B1F33;" deltaKind="database" deltaTechnology="postgresql" deltaIcon="postgresql" deltaLane="internal" deltaColumn="1" deltaRow="0">
+<mxGeometry x="1160" y="370" width="28" height="22" as="geometry" />
+</mxCell>
+<mxCell id="community-db-label" value="Community PostgreSQL" vertex="1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontColor=#0B1F33;fontSize=12;" deltaKind="annotation">
+<mxGeometry x="1196" y="369" width="210" height="24" as="geometry" />
+</mxCell>
+<mxCell id="card-notification" value="" vertex="1" parent="1" style="rounded=1;html=1;fillColor=#DDF1EF;strokeColor=#0E7C78;strokeWidth=1.5;fontColor=#0B1F33;" deltaKind="annotation" deltaCard="true" deltaLane="internal" deltaColumn="1" deltaRow="1">
+<mxGeometry x="1140" y="540" width="280" height="140" as="geometry" />
+</mxCell>
+<mxCell id="card-notification-title" value="Notification service" vertex="1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontColor=#0B1F33;fontSize=14;fontStyle=1;" deltaKind="annotation">
+<mxGeometry x="1140" y="550" width="280" height="24" as="geometry" />
+</mxCell>
+<mxCell id="notification-db" value="" vertex="1" parent="1" style="shape=datastore;html=1;fillColor=#FFFFFF;strokeColor=#0B1F33;fontColor=#0B1F33;" deltaKind="database" deltaTechnology="postgresql" deltaIcon="postgresql" deltaLane="internal" deltaColumn="1" deltaRow="1">
+<mxGeometry x="1160" y="590" width="28" height="22" as="geometry" />
+</mxCell>
+<mxCell id="notification-db-label" value="Notification PostgreSQL" vertex="1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontColor=#0B1F33;fontSize=12;" deltaKind="annotation">
+<mxGeometry x="1196" y="589" width="210" height="24" as="geometry" />
+</mxCell>
+<mxCell id="card-notification-resend-pill" value="" vertex="1" parent="1" style="rounded=1;html=1;fillColor=#0E7C78;strokeColor=#0E7C78;fontColor=#FFFFFF;" deltaKind="annotation" deltaPill="true">
+<mxGeometry x="1160" y="630" width="200" height="30" as="geometry" />
+</mxCell>
+<mxCell id="card-notification-resend-pill-cloud" value="" vertex="1" parent="1" style="ellipse;shape=cloud;html=1;fillColor=#0E7C78;strokeColor=#DDF1EF;fontColor=#0B1F33;" deltaKind="annotation">
+<mxGeometry x="1168" y="636" width="40" height="18" as="geometry" />
+</mxCell>
+<mxCell id="card-notification-resend-pill-text" value="Resend" vertex="1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontColor=#0B1F33;fontSize=12;" deltaKind="annotation">
+<mxGeometry x="1214" y="630" width="140" height="30" as="geometry" />
+</mxCell>
+<mxCell id="clients" value="Clients" vertex="1" parent="1" style="shape=ellipse;html=1;fillColor=#DDF1EF;strokeColor=#0E7C78;fontColor=#0B1F33;fontSize=13;" deltaKind="annotation" deltaExternal="true" deltaExternalRole="actor">
+<mxGeometry x="50" y="690" width="140" height="60" as="geometry" />
+</mxCell>
+<mxCell id="ve-client-voice" value="" edge="1" parent="1" source="clients" target="card-voice" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#0E7C78;strokeWidth=1.6;dashed=0;startArrow=none;endArrow=block;endFill=1;fontColor=#0B1F33;fontSize=12;exitX=1;exitY=0.2;entryX=0;entryY=0.5;" deltaChannel="direct" deltaRelationship="request">
+<mxGeometry relative="1" as="geometry">
+<Array as="points">
+<mxPoint x="258" y="702" />
+<mxPoint x="258" y="390" />
+</Array>
+</mxGeometry>
+</mxCell>
+<mxCell id="ve-client-chat" value="" edge="1" parent="1" source="clients" target="card-chat" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#0E7C78;strokeWidth=1.6;dashed=0;startArrow=none;endArrow=block;endFill=1;fontColor=#0B1F33;fontSize=12;exitX=1;exitY=0.4;entryX=0;entryY=0.5;" deltaChannel="direct" deltaRelationship="request">
+<mxGeometry relative="1" as="geometry">
+<Array as="points">
+<mxPoint x="272" y="714" />
+<mxPoint x="272" y="610" />
+</Array>
+</mxGeometry>
+</mxCell>
+<mxCell id="ve-client-gateway" value="" edge="1" parent="1" source="clients" target="card-gateway" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#0E7C78;strokeWidth=1.6;dashed=1;dashPattern=6 4;startArrow=none;endArrow=block;endFill=1;fontColor=#0B1F33;fontSize=12;exitX=1;exitY=0.6;entryX=0;entryY=0.5;" deltaChannel="streaming" deltaRelationship="request">
+<mxGeometry relative="1" as="geometry">
+<Array as="points">
+<mxPoint x="300" y="726" />
+<mxPoint x="300" y="830" />
+</Array>
+</mxGeometry>
+</mxCell>
+<mxCell id="ve-client-identity" value="" edge="1" parent="1" source="clients" target="card-identity" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#0E7C78;strokeWidth=1.6;dashed=0;startArrow=none;endArrow=block;endFill=1;fontColor=#0B1F33;fontSize=12;exitX=1;exitY=0.8;entryX=0;entryY=0.5;" deltaChannel="direct" deltaRelationship="request">
+<mxGeometry relative="1" as="geometry">
+<Array as="points">
+<mxPoint x="286" y="738" />
+<mxPoint x="286" y="1050" />
+</Array>
+</mxGeometry>
+</mxCell>
+<mxCell id="ve-voice-access" value="" edge="1" parent="1" source="card-voice" target="card-community" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#0E7C78;strokeWidth=1.6;dashed=0;startArrow=none;endArrow=block;endFill=1;fontColor=#0B1F33;fontSize=12;exitX=1;exitY=0.214;entryX=0;entryY=0.107;" deltaChannel="direct" deltaRelationship="request">
+<mxGeometry relative="1" as="geometry">
+<Array as="points">
+<mxPoint x="700" y="350" />
+<mxPoint x="700" y="120" />
+<mxPoint x="1130" y="120" />
+<mxPoint x="1130" y="335" />
+</Array>
+</mxGeometry>
+</mxCell>
+<mxCell id="ve-chat-access" value="" edge="1" parent="1" source="card-chat" target="card-community" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#0E7C78;strokeWidth=1.6;dashed=0;startArrow=none;endArrow=block;endFill=1;fontColor=#0B1F33;fontSize=12;exitX=1;exitY=0.143;entryX=0;entryY=0.25;" deltaChannel="direct" deltaRelationship="request">
+<mxGeometry relative="1" as="geometry">
+<Array as="points">
+<mxPoint x="730" y="560" />
+<mxPoint x="730" y="160" />
+<mxPoint x="1120" y="160" />
+<mxPoint x="1120" y="355" />
+</Array>
+</mxGeometry>
+</mxCell>
+<mxCell id="ve-gateway-access" value="" edge="1" parent="1" source="card-gateway" target="card-community" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#0E7C78;strokeWidth=1.6;dashed=0;startArrow=none;endArrow=block;endFill=1;fontColor=#0B1F33;fontSize=12;exitX=1;exitY=0.107;entryX=0;entryY=0.393;" deltaChannel="direct" deltaRelationship="request">
+<mxGeometry relative="1" as="geometry">
+<Array as="points">
+<mxPoint x="760" y="775" />
+<mxPoint x="760" y="200" />
+<mxPoint x="1110" y="200" />
+<mxPoint x="1110" y="375" />
+</Array>
+</mxGeometry>
+</mxCell>
+<mxCell id="ve-voice-cons" value="" edge="1" parent="1" source="kafka-inner" target="card-voice" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#7F19E6;strokeWidth=1.6;dashed=1;dashPattern=6 4;startArrow=none;endArrow=block;endFill=1;fontColor=#0B1F33;fontSize=12;exitX=0;exitY=0.2159;entryX=1;entryY=0.7857;" deltaChannel="messaging" deltaRelationship="event">
+<mxGeometry relative="1" as="geometry" />
+</mxCell>
+<mxCell id="ve-chat-pub" value="" edge="1" parent="1" source="card-chat" target="kafka-inner" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#7F19E6;strokeWidth=1.6;dashed=1;dashPattern=6 4;startArrow=none;endArrow=block;endFill=1;fontColor=#0B1F33;fontSize=12;exitX=1;exitY=0.3214;entryX=0;entryY=0.3920;" deltaChannel="messaging" deltaRelationship="event">
+<mxGeometry relative="1" as="geometry" />
+</mxCell>
+<mxCell id="ve-chat-cons" value="" edge="1" parent="1" source="kafka-inner" target="card-chat" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#7F19E6;strokeWidth=1.6;dashed=1;dashPattern=6 4;startArrow=none;endArrow=block;endFill=1;fontColor=#0B1F33;fontSize=12;exitX=0;exitY=0.4489;entryX=1;entryY=0.6786;" deltaChannel="messaging" deltaRelationship="event">
+<mxGeometry relative="1" as="geometry" />
+</mxCell>
+<mxCell id="ve-gateway-cons-friend" value="" edge="1" parent="1" source="kafka-inner" target="card-gateway" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#7F19E6;strokeWidth=1.6;dashed=1;dashPattern=6 4;startArrow=none;endArrow=block;endFill=1;fontColor=#0B1F33;fontSize=12;exitX=0;exitY=0.6364;entryX=1;entryY=0.2857;" deltaChannel="messaging" deltaRelationship="event">
+<mxGeometry relative="1" as="geometry" />
+</mxCell>
+<mxCell id="ve-gateway-cons-community" value="" edge="1" parent="1" source="kafka-inner" target="card-gateway" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#7F19E6;strokeWidth=1.6;dashed=1;dashPattern=6 4;startArrow=none;endArrow=block;endFill=1;fontColor=#0B1F33;fontSize=12;exitX=0;exitY=0.6705;entryX=1;entryY=0.5;" deltaChannel="messaging" deltaRelationship="event">
+<mxGeometry relative="1" as="geometry" />
+</mxCell>
+<mxCell id="ve-gateway-cons-message" value="" edge="1" parent="1" source="kafka-inner" target="card-gateway" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#7F19E6;strokeWidth=1.6;dashed=1;dashPattern=6 4;startArrow=none;endArrow=block;endFill=1;fontColor=#0B1F33;fontSize=12;exitX=0;exitY=0.7045;entryX=1;entryY=0.7143;" deltaChannel="messaging" deltaRelationship="event">
+<mxGeometry relative="1" as="geometry" />
+</mxCell>
+<mxCell id="ve-identity-pub" value="" edge="1" parent="1" source="card-identity" target="kafka-inner" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#7F19E6;strokeWidth=1.6;dashed=1;dashPattern=6 4;startArrow=none;endArrow=block;endFill=1;fontColor=#0B1F33;fontSize=12;exitX=1;exitY=0.5;entryX=0;entryY=0.9205;" deltaChannel="messaging" deltaRelationship="event">
+<mxGeometry relative="1" as="geometry" />
+</mxCell>
+<mxCell id="ve-community-pub-events" value="" edge="1" parent="1" source="card-community" target="kafka-inner" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#7F19E6;strokeWidth=1.6;dashed=1;dashPattern=6 4;startArrow=none;endArrow=block;endFill=1;fontColor=#0B1F33;fontSize=12;exitX=0;exitY=0.5714;entryX=1;entryY=0.1818;" deltaChannel="messaging" deltaRelationship="event">
+<mxGeometry relative="1" as="geometry" />
+</mxCell>
+<mxCell id="ve-community-pub-invites" value="" edge="1" parent="1" source="card-community" target="kafka-inner" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#7F19E6;strokeWidth=1.6;dashed=1;dashPattern=6 4;startArrow=none;endArrow=block;endFill=1;fontColor=#0B1F33;fontSize=12;exitX=0;exitY=0.7857;entryX=1;entryY=0.2159;" deltaChannel="messaging" deltaRelationship="event">
+<mxGeometry relative="1" as="geometry" />
+</mxCell>
+<mxCell id="ve-notification-cons-friend" value="" edge="1" parent="1" source="kafka-inner" target="card-notification" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#7F19E6;strokeWidth=1.6;dashed=1;dashPattern=6 4;startArrow=none;endArrow=block;endFill=1;fontColor=#0B1F33;fontSize=12;exitX=1;exitY=0.3977;entryX=0;entryY=0.3571;" deltaChannel="messaging" deltaRelationship="event">
+<mxGeometry relative="1" as="geometry" />
+</mxCell>
+<mxCell id="ve-notification-cons-invite" value="" edge="1" parent="1" source="kafka-inner" target="card-notification" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#7F19E6;strokeWidth=1.6;dashed=1;dashPattern=6 4;startArrow=none;endArrow=block;endFill=1;fontColor=#0B1F33;fontSize=12;exitX=1;exitY=0.4432;entryX=0;entryY=0.6429;" deltaChannel="messaging" deltaRelationship="event">
+<mxGeometry relative="1" as="geometry" />
+</mxCell>
+</root>
+</mxGraphModel>
+</diagram>
+</mxfile>
