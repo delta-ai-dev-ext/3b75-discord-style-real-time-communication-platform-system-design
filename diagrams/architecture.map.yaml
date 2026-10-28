@@ -1,0 +1,585 @@
+schema_version: 2
+diagram_id: architecture
+mode: architecture
+orientation: LR
+scope: Big-picture architecture of the Discord-style real-time communication platform
+  described in SYSTEM_DESIGN.md.
+sources:
+- path: SYSTEM_DESIGN.md
+  sha256: 1518c3f77f80d0cfd9085c8323e00e6009093e54c6d1de21624ecca5601b3278
+entities:
+- id: clients
+  label: Clients
+  kind: annotation
+  external: true
+  external_role: actor
+  lane: edge
+  row: 0
+  evidence:
+  - path: SYSTEM_DESIGN.md
+    quote: Clients sign up and sign in through **Clerk** (email/password plus Google,
+      Apple and Discord social connections).
+- id: voice
+  name: voice_service
+  label: Voice service
+  kind: service
+  technology: kubernetes-pod
+  lane: user-facing
+  row: 0
+  evidence:
+  - path: SYSTEM_DESIGN.md
+    quote: '`voice_service` → `community_service`: `GET /internal/v1/channels/{channel_id}/access/{user_id}`'
+- id: livekit
+  label: LiveKit Cloud
+  kind: annotation
+  external: true
+  external_role: dependency
+  lane: user-facing
+  row: 0
+  inside: voice
+  evidence:
+  - path: SYSTEM_DESIGN.md
+    quote: '| Voice/video media transport (WebRTC SFU) | External | **LiveKit Cloud**
+      | `voice_service` |'
+- id: chat
+  name: chat_service
+  label: Chat service
+  kind: service
+  technology: kubernetes-pod
+  lane: user-facing
+  row: 1
+  evidence:
+  - path: SYSTEM_DESIGN.md
+    quote: '**Send message:** client `POST /v1/channels/{id}/messages` → `chat_service`
+      checks access with `community_service` → persists and writes to outbox → `chat_message_events`
+      → every `realtime_gateway` pod → delivered to authorized subscribed sessions.'
+- id: chat-db
+  label: Chat PostgreSQL
+  kind: database
+  technology: postgresql
+  lane: user-facing
+  row: 1
+  inside: chat
+  evidence:
+  - path: SYSTEM_DESIGN.md
+    quote: 'PostgreSQL: `Message` (id, channel id, community id, author id, content,
+      client nonce, created/edited/deleted timestamps)'
+- id: gateway
+  name: realtime_gateway
+  label: Realtime gateway
+  kind: service
+  technology: kubernetes-pod
+  lane: user-facing
+  row: 2
+  evidence:
+  - path: SYSTEM_DESIGN.md
+    quote: '`realtime_gateway` → `community_service`: `GET /internal/v1/communities/{community_id}/members/{user_id}/access`'
+- id: identity
+  name: identity_service
+  label: Identity service
+  kind: service
+  technology: kubernetes-pod
+  lane: user-facing
+  row: 3
+  evidence:
+  - path: SYSTEM_DESIGN.md
+    quote: '| Authentication (email/password, Google, Apple, Discord) | External |
+      **Clerk** | All services verify tokens; `identity_service` mirrors users |'
+- id: identity-db
+  label: Identity PostgreSQL
+  kind: database
+  technology: postgresql
+  lane: user-facing
+  row: 3
+  inside: identity
+  evidence:
+  - path: SYSTEM_DESIGN.md
+    quote: 'PostgreSQL: `UserProfile` (keyed by Clerk user id; username, display name,
+      avatar URL, email, deleted flag)'
+- id: clerk
+  label: Clerk
+  kind: annotation
+  external: true
+  external_role: dependency
+  lane: user-facing
+  row: 3
+  inside: identity
+  evidence:
+  - path: SYSTEM_DESIGN.md
+    quote: '| Authentication (email/password, Google, Apple, Discord) | External |
+      **Clerk** | All services verify tokens; `identity_service` mirrors users |'
+- id: kafka
+  label: Kafka event bus
+  kind: broker
+  technology: kafka
+  lane: kafka
+  row: 0
+  evidence:
+  - path: SYSTEM_DESIGN.md
+    quote: '**Kafka**: asynchronous domain events and real-time fan-out to WebSocket
+      gateway pods.'
+- id: community
+  name: community_service
+  label: Community service
+  kind: service
+  technology: kubernetes-pod
+  lane: internal
+  column: 1
+  row: 0
+  evidence:
+  - path: SYSTEM_DESIGN.md
+    quote: '`chat_service` → `community_service`: `GET /internal/v1/channels/{channel_id}/access/{user_id}`'
+- id: community-db
+  label: Community PostgreSQL
+  kind: database
+  technology: postgresql
+  lane: internal
+  column: 1
+  row: 0
+  inside: community
+  evidence:
+  - path: SYSTEM_DESIGN.md
+    quote: 'PostgreSQL: `Community`, `Channel` (type `text|voice`), `Role`, `MemberRole`
+      assignment'
+- id: notification
+  name: notification_service
+  label: Notification service
+  kind: service
+  technology: kubernetes-pod
+  lane: internal
+  column: 1
+  row: 1
+  evidence:
+  - path: SYSTEM_DESIGN.md
+    quote: '| Transactional email | External | **Resend** | `notification_service`
+      |'
+- id: notification-db
+  label: Notification PostgreSQL
+  kind: database
+  technology: postgresql
+  lane: internal
+  column: 1
+  row: 1
+  inside: notification
+  evidence:
+  - path: SYSTEM_DESIGN.md
+    quote: 'PostgreSQL: `EmailDelivery` (source event id, kind `friend_request|community_invite`,
+      recipient email, provider message id, status `queued|sent|delivered|bounced|complained|deferred|failed`,
+      attempts, timestamps)'
+- id: resend
+  label: Resend
+  kind: annotation
+  external: true
+  external_role: dependency
+  lane: internal
+  column: 1
+  row: 1
+  inside: notification
+  evidence:
+  - path: SYSTEM_DESIGN.md
+    quote: '| Transactional email | External | **Resend** | `notification_service`
+      |'
+relationships:
+- id: rel-client-voice
+  source: clients
+  target: voice
+  type: request
+  interaction:
+    channel: direct
+    purpose: voice room tokens
+  evidence:
+  - path: SYSTEM_DESIGN.md
+    quote: '**Join voice room:** `POST /v1/voice/channels/{id}/token` → access check
+      → LiveKit token with grants → client connects to LiveKit Cloud directly.'
+- id: rel-client-chat
+  source: clients
+  target: chat
+  type: request
+  interaction:
+    channel: direct
+    purpose: messages and history
+  evidence:
+  - path: SYSTEM_DESIGN.md
+    quote: '**Send message:** client `POST /v1/channels/{id}/messages` → `chat_service`
+      checks access with `community_service` → persists and writes to outbox → `chat_message_events`
+      → every `realtime_gateway` pod → delivered to authorized subscribed sessions.'
+- id: rel-client-gateway
+  source: clients
+  target: gateway
+  type: request
+  interaction:
+    channel: streaming
+    purpose: real-time event delivery
+  evidence:
+  - path: SYSTEM_DESIGN.md
+    quote: Terminate client **WebSocket** connections at `GET /v1/gateway`.
+- id: rel-client-identity
+  source: clients
+  target: identity
+  type: request
+  interaction:
+    channel: direct
+    purpose: profiles and friend requests
+  evidence:
+  - path: SYSTEM_DESIGN.md
+    quote: '**Friend request:** `POST /v1/friend-requests {username}` → `friend_request_sent`
+      → notification_service emails the recipient through Resend; the gateway shows
+      it live if the recipient is online.'
+- id: rel-voice-access
+  source: voice
+  target: community
+  type: request
+  interaction:
+    channel: direct
+    purpose: channel access check
+  evidence:
+  - path: SYSTEM_DESIGN.md
+    quote: '`voice_service` → `community_service`: `GET /internal/v1/channels/{channel_id}/access/{user_id}`'
+- id: rel-chat-access
+  source: chat
+  target: community
+  type: request
+  interaction:
+    channel: direct
+    purpose: channel access check
+  evidence:
+  - path: SYSTEM_DESIGN.md
+    quote: '`chat_service` → `community_service`: `GET /internal/v1/channels/{channel_id}/access/{user_id}`'
+- id: rel-gateway-access
+  source: gateway
+  target: community
+  type: request
+  interaction:
+    channel: direct
+    purpose: member access check
+  evidence:
+  - path: SYSTEM_DESIGN.md
+    quote: '`realtime_gateway` → `community_service`: `GET /internal/v1/communities/{community_id}/members/{user_id}/access`'
+- id: rel-identity-pub
+  source: identity
+  target: kafka
+  type: event
+  direction: forward
+  interaction:
+    channel: messaging
+    purpose: friend request events
+  messaging:
+    role: producer
+    topic: identity_friend_events
+  evidence:
+  - path: SYSTEM_DESIGN.md
+    quote: '`identity_service` → `identity_friend_events` → `notification_service`
+      (email), `realtime_gateway` (live update)'
+- id: rel-gateway-cons-friend
+  source: kafka
+  target: gateway
+  type: event
+  direction: forward
+  interaction:
+    channel: messaging
+    purpose: friend event live updates
+  messaging:
+    role: consumer
+    topic: identity_friend_events
+  evidence:
+  - path: SYSTEM_DESIGN.md
+    quote: '`identity_service` → `identity_friend_events` → `notification_service`
+      (email), `realtime_gateway` (live update)'
+- id: rel-notification-cons-friend
+  source: kafka
+  target: notification
+  type: event
+  direction: forward
+  interaction:
+    channel: messaging
+    purpose: friend request emails
+  messaging:
+    role: consumer
+    topic: identity_friend_events
+  evidence:
+  - path: SYSTEM_DESIGN.md
+    quote: '`identity_service` → `identity_friend_events` → `notification_service`
+      (email), `realtime_gateway` (live update)'
+- id: rel-community-pub-events
+  source: community
+  target: kafka
+  type: event
+  direction: forward
+  interaction:
+    channel: messaging
+    purpose: community state events
+  messaging:
+    role: producer
+    topic: community_events
+  evidence:
+  - path: SYSTEM_DESIGN.md
+    quote: '`community_service` → `community_events` → `realtime_gateway` (live UI
+      + access refresh), `voice_service` (moderation enforcement), `chat_service`
+      (history purge)'
+- id: rel-community-pub-invites
+  source: community
+  target: kafka
+  type: event
+  direction: forward
+  interaction:
+    channel: messaging
+    purpose: invite email events
+  messaging:
+    role: producer
+    topic: community_invite_events
+  evidence:
+  - path: SYSTEM_DESIGN.md
+    quote: '`community_service` → `community_invite_events` → `notification_service`
+      (email)'
+- id: rel-gateway-cons-community
+  source: kafka
+  target: gateway
+  type: event
+  direction: forward
+  interaction:
+    channel: messaging
+    purpose: live community updates
+  messaging:
+    role: consumer
+    topic: community_events
+  evidence:
+  - path: SYSTEM_DESIGN.md
+    quote: '`community_service` → `community_events` → `realtime_gateway` (live UI
+      + access refresh), `voice_service` (moderation enforcement), `chat_service`
+      (history purge)'
+- id: rel-voice-cons-community
+  source: kafka
+  target: voice
+  type: event
+  direction: forward
+  interaction:
+    channel: messaging
+    purpose: live moderation enforcement
+  messaging:
+    role: consumer
+    topic: community_events
+  evidence:
+  - path: SYSTEM_DESIGN.md
+    quote: '`community_service` → `community_events` → `realtime_gateway` (live UI
+      + access refresh), `voice_service` (moderation enforcement), `chat_service`
+      (history purge)'
+- id: rel-chat-cons-community
+  source: kafka
+  target: chat
+  type: event
+  direction: forward
+  interaction:
+    channel: messaging
+    purpose: deleted channel history purge
+  messaging:
+    role: consumer
+    topic: community_events
+  evidence:
+  - path: SYSTEM_DESIGN.md
+    quote: '`community_service` → `community_events` → `realtime_gateway` (live UI
+      + access refresh), `voice_service` (moderation enforcement), `chat_service`
+      (history purge)'
+- id: rel-notification-cons-invite
+  source: kafka
+  target: notification
+  type: event
+  direction: forward
+  interaction:
+    channel: messaging
+    purpose: invite emails
+  messaging:
+    role: consumer
+    topic: community_invite_events
+  evidence:
+  - path: SYSTEM_DESIGN.md
+    quote: '`community_service` → `community_invite_events` → `notification_service`
+      (email)'
+- id: rel-chat-pub
+  source: chat
+  target: kafka
+  type: event
+  direction: forward
+  interaction:
+    channel: messaging
+    purpose: message fan-out
+  messaging:
+    role: producer
+    topic: chat_message_events
+  evidence:
+  - path: SYSTEM_DESIGN.md
+    quote: '`chat_service` → `chat_message_events` → `realtime_gateway` (live message
+      fan-out)'
+- id: rel-gateway-cons-message
+  source: kafka
+  target: gateway
+  type: event
+  direction: forward
+  interaction:
+    channel: messaging
+    purpose: live message fan-out
+  messaging:
+    role: consumer
+    topic: chat_message_events
+  evidence:
+  - path: SYSTEM_DESIGN.md
+    quote: '`chat_service` → `chat_message_events` → `realtime_gateway` (live message
+      fan-out)'
+view:
+  entities:
+  - clients
+  - voice
+  - livekit
+  - chat
+  - chat-db
+  - gateway
+  - identity
+  - identity-db
+  - clerk
+  - kafka
+  - community
+  - community-db
+  - notification
+  - notification-db
+  - resend
+  groups:
+  - id: edge-lane
+    label: Application edge
+    lane: edge
+    members:
+    - clients
+  - id: user-lane
+    label: User facing services
+    lane: user-facing
+    members:
+    - voice
+    - livekit
+    - chat
+    - chat-db
+    - gateway
+    - identity
+    - identity-db
+    - clerk
+  - id: kafka-lane
+    label: Kafka / event bus
+    lane: kafka
+    members:
+    - kafka
+  - id: internal-lane
+    label: Internal services
+    lane: internal
+    members:
+    - community
+    - community-db
+    - notification
+    - notification-db
+    - resend
+  edges:
+  - id: ve-client-voice
+    source: clients
+    target: voice
+    relationships:
+    - rel-client-voice
+    flow: forward
+  - id: ve-client-chat
+    source: clients
+    target: chat
+    relationships:
+    - rel-client-chat
+    flow: forward
+  - id: ve-client-gateway
+    source: clients
+    target: gateway
+    relationships:
+    - rel-client-gateway
+    flow: forward
+  - id: ve-client-identity
+    source: clients
+    target: identity
+    relationships:
+    - rel-client-identity
+    flow: forward
+  - id: ve-voice-access
+    source: voice
+    target: community
+    relationships:
+    - rel-voice-access
+    flow: forward
+  - id: ve-chat-access
+    source: chat
+    target: community
+    relationships:
+    - rel-chat-access
+    flow: forward
+  - id: ve-gateway-access
+    source: gateway
+    target: community
+    relationships:
+    - rel-gateway-access
+    flow: forward
+  - id: ve-voice-cons
+    source: kafka
+    target: voice
+    relationships:
+    - rel-voice-cons-community
+    flow: feedback
+  - id: ve-chat-pub
+    source: chat
+    target: kafka
+    relationships:
+    - rel-chat-pub
+    flow: forward
+  - id: ve-chat-cons
+    source: kafka
+    target: chat
+    relationships:
+    - rel-chat-cons-community
+    flow: feedback
+  - id: ve-gateway-cons-friend
+    source: kafka
+    target: gateway
+    relationships:
+    - rel-gateway-cons-friend
+    flow: feedback
+  - id: ve-gateway-cons-community
+    source: kafka
+    target: gateway
+    relationships:
+    - rel-gateway-cons-community
+    flow: feedback
+  - id: ve-gateway-cons-message
+    source: kafka
+    target: gateway
+    relationships:
+    - rel-gateway-cons-message
+    flow: feedback
+  - id: ve-identity-pub
+    source: identity
+    target: kafka
+    relationships:
+    - rel-identity-pub
+    flow: forward
+  - id: ve-community-pub-events
+    source: community
+    target: kafka
+    relationships:
+    - rel-community-pub-events
+    flow: forward
+  - id: ve-community-pub-invites
+    source: community
+    target: kafka
+    relationships:
+    - rel-community-pub-invites
+    flow: forward
+  - id: ve-notification-cons-friend
+    source: kafka
+    target: notification
+    relationships:
+    - rel-notification-cons-friend
+    flow: feedback
+  - id: ve-notification-cons-invite
+    source: kafka
+    target: notification
+    relationships:
+    - rel-notification-cons-invite
+    flow: feedback
+  omitted: []
