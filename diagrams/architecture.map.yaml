@@ -23,7 +23,7 @@ entities:
   name: voice_service
   label: Voice service
   kind: service
-  technology: kubernetes-pod
+  technology: container
   lane: user-facing
   row: 0
   evidence:
@@ -45,7 +45,7 @@ entities:
   name: chat_service
   label: Chat service
   kind: service
-  technology: kubernetes-pod
+  technology: container
   lane: user-facing
   row: 1
   evidence:
@@ -68,7 +68,7 @@ entities:
   name: realtime_gateway
   label: Realtime gateway
   kind: service
-  technology: kubernetes-pod
+  technology: container
   lane: user-facing
   row: 2
   evidence:
@@ -78,7 +78,7 @@ entities:
   name: identity_service
   label: Identity service
   kind: service
-  technology: kubernetes-pod
+  technology: container
   lane: user-facing
   row: 3
   evidence:
@@ -122,7 +122,7 @@ entities:
   name: community_service
   label: Community service
   kind: service
-  technology: kubernetes-pod
+  technology: container
   lane: internal
   column: 1
   row: 0
@@ -145,7 +145,7 @@ entities:
   name: notification_service
   label: Notification service
   kind: service
-  technology: kubernetes-pod
+  technology: container
   lane: internal
   column: 1
   row: 1

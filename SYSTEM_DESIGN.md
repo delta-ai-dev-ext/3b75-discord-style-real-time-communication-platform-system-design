@@ -4,7 +4,7 @@
 
 A real-time community platform for creator and fan communities: text chat, voice/video rooms (~50 participants), invite-link-based community membership, username-based friend connections, email notifications, and moderator tooling (per-channel roles/permissions, timeouts, kicks, bans, audit log).
 
-**Architecture style:** six domain-oriented backend services, all **TypeScript**, each deployed as **stateless Kubernetes pods** (`replicas >= 1`) exposing `GET /healthz` and `GET /readyz` and draining connections gracefully on `SIGTERM`/`SIGINT`.
+**Architecture style:** six domain-oriented backend services, all **TypeScript**, each packaged as a **standard container image** and deployed as **stateless replicas** (`replicas >= 1`) exposing `GET /healthz` and `GET /readyz` and draining connections gracefully on `SIGTERM`/`SIGINT`.
 
 **Portable infrastructure:**
 - **PostgreSQL**: one logical database per stateful service (`identity_service`, `community_service`, `chat_service`, `notification_service`). No cross-service table sharing.
@@ -37,7 +37,7 @@ A real-time community platform for creator and fan communities: text chat, voice
 - **Every service verifies session JWTs offline** using Clerk's published public key/JWKS. No per-request call to Clerk or to `identity_service` is made for authentication.
   - REST: `Authorization: Bearer <session_jwt>`.
   - WebSocket: the token is sent in the initial `identify` frame. The gateway re-validates it on `refresh_token` frames before expiry.
-- **Internal endpoints** (`/internal/v1/*`) are reachable only on the cluster network (not exposed via ingress) and require a service-to-service bearer token (shared secret per caller, rotated through K8s secrets).
+- **Internal endpoints** (`/internal/v1/*`) are reachable only on the cluster network (not exposed via ingress) and require a service-to-service bearer token (shared secret per caller, rotated through your platform secret store).
 - **Inbound webhooks** (Clerk, Resend, LiveKit) are publicly routed and authenticated **only** by provider signature verification (Svix signatures for Clerk and Resend; signed JWT + body hash for LiveKit). Payloads that fail verification are rejected with `401`.
 
 ---
